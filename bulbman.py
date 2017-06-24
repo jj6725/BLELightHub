@@ -9,11 +9,11 @@ class BulbManager():
 
 	def bulbsBrightness(self, value):
 		self.bulbA().setBrightness(value)
-		self.bulbB().setBrightness(value*25)
+		self.bulbB().setBrightness(value)
 
 	def bulbsTemperature(self, value):
 		self.bulbA().setTemperature(value)
-		
+
 	def bulbsOn(self):
 		self.bulbA().switchOn()
 		self.bulbB().switchOn()

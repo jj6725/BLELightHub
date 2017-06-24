@@ -78,6 +78,7 @@ def bulbTemp(value):
 		return jsonify( { 'Temperature': value } )
 	else:
 		return jsonify( { 'Error': 'Value must be between 1 and 10' } )
-	
+
 if __name__ == '__main__':
-	app.run(host='0.0.0.0', port=8989, debug= True)
+	app.run(host='0.0.0.0', port=8991, debug= True)
+
