@@ -1,6 +1,6 @@
 from b930 import BulbB930
 from wislight import BulbWislight
-import time
+import time, argparse
 
 class BulbManager():
 
@@ -9,7 +9,7 @@ class BulbManager():
 
 	def bulbsBrightness(self, value):
 		self.bulbA().setBrightness(value)
-		self.bulbB().setBrightness(value)
+		self.bulbB().setBrightness(int(value*255/10))
 
 	def bulbsTemperature(self, value):
 		self.bulbA().setTemperature(value)
@@ -21,3 +21,14 @@ class BulbManager():
 	def bulbsOff(self):
 		self.bulbA().switchOff()
 		self.bulbB().switchOff()
+
+if __name__ == "__main__":
+	parser = argparse.ArgumentParser()
+	parser.add_argument("-i",type=int)
+	args = parser.parse_args()
+	bulbs = BulbManager
+	if(args.i == 0):
+		bulbs().bulbsOff()
+	else:
+		bulbs().bulbsOn()
+		bulbs().bulbsBrightness(args.i)

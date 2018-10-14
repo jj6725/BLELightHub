@@ -1,9 +1,7 @@
 ##########################################################################################
 # B930 lightbulb commands
 ##########################################################################################
-import pexpect
-import random
-import time
+import pexpect, random, time, argparse
 
 class BulbB930():
 	DEVICE = "F4:B8:5E:92:73:40"
@@ -38,7 +36,7 @@ class BulbB930():
 		child.sendline(command)
 		child.expect("handle: 0x0024", timeout=5)
 		child.expect("\r\n", timeout=5)
-		print child.before
+		print(child.before)
 		return child.before
 
 	def isNormalMode(self):
@@ -69,3 +67,17 @@ class BulbB930():
 
 	def setPreset(self, value):
 		self.sendCommand((0x0b, 0x01, value))
+
+if __name__ == "__main__":
+	parser = argparse.ArgumentParser()
+	parser.add_argument("-r",type=int)
+	parser.add_argument("-g",type=int)
+	parser.add_argument("-b",type=int)
+	parser.add_argument("-i",type=int)
+	args = parser.parse_args()
+	bulb = BulbB930
+	# bulb().whiteReset()
+	# bulb().setRGB(args.r,args.g,args.b)
+	bulb().setBrightness(args.i)
+	# bulb().switchOff()
+	
